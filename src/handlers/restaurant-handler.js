@@ -1,9 +1,11 @@
+const RestaurantValidation = require('../validations/restaurant-validation')
+
 const router = require('express').Router()
 
 router.post('/', async (req, res) => {
-    const restaurant = req.body
+    const restaurant = await RestaurantValidation.restaurantInsert(req.body)
     
-    res.status(200).json({x})
+    res.status(200).json(restaurant)
 })
 
 router.get('/', async (req, res) => {
