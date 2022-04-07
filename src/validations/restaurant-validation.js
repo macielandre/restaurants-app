@@ -1,7 +1,7 @@
 const yup = require('../libs/yup')
 
 class RestaurantValidation {
-    static async restaurantValidation(restaurant) {
+    static async restaurantInsert(restaurant) {
         const schema = yup.object().shape({
             id: yup.number().min(0).max(9999),
             name: yup.string().min(1).uppercase(),
