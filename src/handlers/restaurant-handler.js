@@ -1,7 +1,9 @@
 const router = require('express').Router()
 
 router.post('/', async (req, res) => {
-    res.status(200).json({test: 'working'})
+    const restaurant = req.body
+    
+    res.status(200).json({x})
 })
 
 router.get('/', async (req, res) => {
