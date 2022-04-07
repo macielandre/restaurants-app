@@ -23,7 +23,7 @@ yup.validateSchema = async (schema, value) => {
     } catch (error) {
         const { message: yupErrorMessage = 'failure validating fields' } = error
 
-        throw { statusCode: 400, message: message || yupErrorMessage }
+        throw { status: 400, message: yupErrorMessage }
     }
 }
 
