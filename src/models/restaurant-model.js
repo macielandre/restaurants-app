@@ -24,21 +24,21 @@ class RestaurantModel {
 
         const restaurant = await model.findOne({ id: data.id, deletedAt: null })
 
-        if(restaurant) throw { status: 400, message: `restaurant with id ${data.id} already exists`}
+        if(restaurant) throw { status: 400, message: `restaurant with id ${data.id} already exists` }
         
         return model.insertMany(data)
     }
 
     static async updateOne(id, data) {
         const model = RestaurantModel.getModel()
-        
+
         const restaurant = await model.findOne({ id, deletedAt: null })
 
-        if(!restaurant) throw { status: 404, message: `restaurant with id ${id} not found`}
+        if (!restaurant) throw { statusCode: 404, message: `restaurant with id ${id} not found` }
 
-        const mergedObjects = Object.assign(restaurant._doc, data)
+        const updatedRestaurant = NormalizeHelper.mergeNestedObjects(restaurant._doc, data)
 
-        restaurant.set(mergedObjects)
+        restaurant.set(updatedRestaurant)
 
         return restaurant.save()
     }
@@ -48,7 +48,7 @@ class RestaurantModel {
 
         const restaurant = await model.findOne({ id, deletedAt: null })
 
-        if(!restaurant) throw { status: 404, message: `restaurant with id ${id} not found`}
+        if(!restaurant) throw { status: 404, message: `restaurant with id ${id} not found` }
 
         restaurant.set({ deletedAt: new Date() })
 

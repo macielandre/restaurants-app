@@ -5,8 +5,13 @@ class RestaurantValidation {
         const schema = yup.object().shape({
             id: yup.number().min(0).max(9999).required(),
             name: yup.string().min(1).uppercase().required(),
-            address: yup.string().min(1).uppercase().required(),
-            zipcode: yup.string().min(1).required(),
+            address: yup.object().shape({
+                zipcode: yup.string().min(1).uppercase().required(),
+                neighborhood: yup.string().min(1).uppercase().required(),
+                street: yup.string().min(1).uppercase().required(),
+                number: yup.string().min(1).uppercase().required(),
+                complement: yup.string().min(1).uppercase().required()
+            }).required(),
             status: yup.string().min(1).uppercase().oneOf(['CHANGE']).required()
         })
 
@@ -16,8 +21,13 @@ class RestaurantValidation {
     static async restaurantUpdate(restaurantUpdateData) {
         const schema = yup.object().shape({
             name: yup.string().min(1).uppercase(),
-            address: yup.string().min(1).uppercase(),
-            zipcode: yup.string().min(1),
+            address: yup.object().shape({
+                zipcode: yup.string().min(1).uppercase(),
+                neighborhood: yup.string().min(1).uppercase(),
+                street: yup.string().min(1).uppercase(),
+                number: yup.string().min(1).uppercase(),
+                complement: yup.string().min(1).uppercase()
+            }),
             status: yup.string().min(1).uppercase().oneOf(['CHANGE'])
         })
 

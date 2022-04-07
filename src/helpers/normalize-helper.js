@@ -11,6 +11,30 @@ class NormalizeHelper {
         }
     }
 
+    static mergeNestedObjects(target, source) {
+        const output = { ...target }
+
+        if (NormalizeHelper.isObject(target) && NormalizeHelper.isObject(source)) {
+            Object.keys(source).forEach(key => {
+                const sourceValue = source[key]
+                const targetValue = target[key]
+
+                if (NormalizeHelper.isObject(sourceValue)) {
+                    if (Object.hasOwn(target, key)) output[key] = NormalizeHelper.mergeNestedObjects(targetValue, sourceValue)
+                    else Object.assign(output, { [key]: sourceValue })
+                } else {
+                    Object.assign(output, { [key]: sourceValue })
+                }
+            })
+        }
+
+        return output
+    }
+    
+    static isObject(item) {
+        return item && typeof item === 'object' && !Array.isArray(item)
+    }
+
     static booleanFromString(string) {
         return string === 'true' || string === '1'
     }
