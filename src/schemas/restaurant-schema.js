@@ -8,3 +8,5 @@ const RestaurantSchema = new Schema({
     status: { type: String, required: true },
     deletedAt: { type: Date, default: null }
 }, { timestamps: true, strict: true })
+
+module.exports = RestaurantSchema

@@ -15,7 +15,6 @@ class RestaurantValidation {
 
     static async restaurantUpdate(restaurantUpdateData) {
         const schema = yup.object().shape({
-            id: yup.number().min(0).max(9999),
             name: yup.string().min(1).uppercase(),
             address: yup.string().min(1).uppercase(),
             zipcode: yup.string().min(1),
@@ -34,12 +33,10 @@ class RestaurantValidation {
         return yup.validateSchema(schema, restaurantKeys)
     }
 
-    static async restaurantDelete(idObject) {
-        const schema = yup.object().shape({
-            id: yup.number().min(0).max(9999).required()
-        })
+    static async restaurantId(id) {
+        const schema = yup.number().min(0).max(9999).required()
 
-        return yup.validateSchema(schema, idObject)
+        return yup.validateSchema(schema, id)
     }
 
 }
