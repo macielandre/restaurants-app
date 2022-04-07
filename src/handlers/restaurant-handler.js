@@ -14,9 +14,13 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-    const restaurantKeys = await RestaurantValidation.restaurantList(req.query)
+    try {
+        const restaurantKeys = await RestaurantValidation.restaurantList(req.query)
 
-    res.status(200).json({ test: 'working' })
+        res.status(200).json({ message: 'list of restaurants with given filters', restaurants: null })
+    } catch(err) {
+        res.status(err.status || 500).json({ message: err.message || 'unexpected error' })
+    }
 })
 
 router.patch('/', async (req, res) => {
