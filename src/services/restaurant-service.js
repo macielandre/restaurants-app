@@ -6,7 +6,7 @@ class RestaurantService {
     }
 
     static async getRestaurant(keys) {
-        return RestaurantModel.getData(keys)
+        return RestaurantModel.getData({ query: keys })
     }
 
     static async updateRestaurant(id, data) {
