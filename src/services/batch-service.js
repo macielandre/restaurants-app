@@ -1,5 +1,6 @@
 class BatchService {
-    static async processFile() {
+    static async processFile(file) {
+
         return null
     }
 }
