@@ -9,6 +9,8 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
+    "amqplib": "^0.8.0",
+    "crypto-js": "^4.1.1",
     "csvtojson": "^2.0.10",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",

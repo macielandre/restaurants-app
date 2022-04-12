@@ -24,7 +24,7 @@ class RestaurantModel {
 
         const restaurant = await model.findOne({ id: data.id, deletedAt: null })
 
-        if(restaurant) throw { status: 400, message: `restaurant with id ${data.id} already exists` }
+        if (restaurant) throw { status: 400, message: `restaurant with id ${data.id} already exists` }
         
         return model.insertMany(data)
     }
@@ -48,7 +48,7 @@ class RestaurantModel {
 
         const restaurant = await model.findOne({ id, deletedAt: null })
 
-        if(!restaurant) throw { status: 404, message: `restaurant with id ${id} not found` }
+        if (!restaurant) throw { status: 404, message: `restaurant with id ${id} not found` }
 
         restaurant.set({ deletedAt: new Date() })
 
